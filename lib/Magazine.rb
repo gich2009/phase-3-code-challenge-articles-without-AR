@@ -65,6 +65,7 @@ class Magazine
 
   private
   #The following are the helper methods.
+  
   def articles_for_this_magazine
     Article.all.filter {|article| article.magazine == self}
   end
