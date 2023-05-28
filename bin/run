@@ -1,0 +1,95 @@
+#!/usr/bin/env ruby
+require_relative '../config/environment.rb'
+
+#The following shows the illustration tables for my database model.
+
+#Author Table
+#Name(Primary Key)
+#1. Levin Ocholla
+#2. Jerome Origa
+#3. Bonface Mabeche
+
+
+
+#Article Table (This table is the single source of truth aka the join table)
+#Title(Primary key)               #Author(Foreign Key)                           #Magazine(Foreign Key)
+#1. Hashes in Ruby                Levin Ocholla                                  Enigma
+#2. Dictionaries in Python        Jerome Origa                                   Marine
+#3. Objects in Javascript         Bonface Mabeche                                Titan
+#4. Enumerables in Ruby           Jerome Origa                                   Enigma
+#5. Tuples in Python              Levin Ocholla                                  Marine
+#6. Arrays in Ruby                Bonface Mabeche                                Enigma
+
+
+
+#Magazine Table
+#Name(Primary key)              #Category
+#1. Enigma                      Ruby
+#2. Marine                      Python
+#3. Titan                       Javascript
+
+
+#Constructing the author table
+error_user = Author.new(name: 56)
+levin_ocholla   = Author.new(name: "Levin Ocholla")
+jerome_origa    = Author.new(name: "Jerome Origa")
+bonface_mabeche = Author.new(name: "Bonface Mabeche")
+
+
+#Constructing the magazine table
+error_name = Magazine.new(name: 34, category: "Ruby")
+error_category = Magazine.new(name: "Hello", category: 56.5)
+enigma = Magazine.new(name: "Enigma", category: "Ruby")
+marine = Magazine.new(name: "Marine", category: "Python")
+titan  = Magazine.new(name: "Titan",  category: "Javascript")
+
+
+#Constructing the article table
+hashes_in_ruby         = Article.new(title: "Hashes in Ruby",         author: levin_ocholla,   magazine: enigma)
+dictionaries_in_python = Article.new(title: "Dictionaries in Python", author: jerome_origa,    magazine: marine)
+objects_in_javascript  = Article.new(title: "Objects in Javascript",  author: bonface_mabeche, magazine: titan)
+enumerables_in_ruby    = Article.new(title: "Enumerables in Ruby",    author: jerome_origa,    magazine: enigma)
+tuples_in_python       = Article.new(title: "Tuples in Python",       author: levin_ocholla,   magazine: marine)
+arrays_in_ruby         = Article.new(title: "Arrays in Ruby",         author: bonface_mabeche, magazine: enigma)
+
+
+
+
+#----------------------------------------------Testing the methods for the author class--------------------------------------------
+# NOTE: here I add an article by Levin Ocholla to the Marine magazine making him a contributor to the Marine magazine.
+levin_ocholla.add_article(title: "Lists in Python", magazine: marine) 
+#I also add an article by Bonface Mabeche to the Titan magazine making him a contributor to the Titan magazine.
+bonface_mabeche.add_article(title: "Arrays in Javascript", magazine: titan)
+#Finally, I add an article by Jerome Origa to the Marine magazine making him a contributor.
+jerome_origa.add_article(title: "Sets in Python", magazine: marine)
+
+
+Author.all.each do |author|
+  puts "Name: #{author.name}"
+  puts "Articles:   #{author.articles}"
+  puts "Magazines:  #{author.magazines}"
+  puts "Categories: #{author.topic_areas}"
+  puts
+end        
+
+
+
+#--------------------------------------------Testing the methods for the article class---------------------------------------------------
+Article.all.each do |article|
+  puts "Title:    #{article.title}"
+  puts "Author:   #{article.author.name}"
+  puts "Magazine: #{article.magazine.name}"
+  puts
+end
+
+
+
+#--------------------------------------------Testing the methods for the magazine class---------------------------------------------------
+Magazine.all.each do |magazine|
+  puts "Magazine:                                          #{magazine.name}"
+  puts "This magazines object id was found by name and is: #{Magazine.find_by_name(magazine.name)}"
+  puts "Contributors:                                      #{magazine.contributors}"
+  puts "Articles:                                          #{magazine.article_titles}"
+  puts "Contributing authors:                              #{magazine.contributing_authors}"
+  puts
+end
