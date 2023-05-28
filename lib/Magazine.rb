@@ -43,11 +43,7 @@ class Magazine
 
 
   def contributors
-    #Returns the authors names as strings
     contributors_for_this_magazine = self.articles_for_this_magazine.map(&:author).uniq
-
-    #Returns the authors as instances/objects.
-    Author.all.filter { |author| contributors_for_this_magazine.include?(author) }
   end
 
 

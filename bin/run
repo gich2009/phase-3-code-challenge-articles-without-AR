@@ -30,15 +30,17 @@ require_relative '../config/environment.rb'
 
 
 #Constructing the author table
-error_user = Author.new(name: 56)
+error_author_name = Author.new(name: 56)  #To showcase error handling functionality for name
+
 levin_ocholla   = Author.new(name: "Levin Ocholla")
 jerome_origa    = Author.new(name: "Jerome Origa")
 bonface_mabeche = Author.new(name: "Bonface Mabeche")
 
 
 #Constructing the magazine table
-error_name = Magazine.new(name: 34, category: "Ruby")
-error_category = Magazine.new(name: "Hello", category: 56.5)
+error_magazine_name     = Magazine.new(name: 34,      category: "Ruby") #To showcase error handling functionality for name
+error_magazine_category = Magazine.new(name: "Hello", category: 56.5)   #To showcase error handling functionality for category
+
 enigma = Magazine.new(name: "Enigma", category: "Ruby")
 marine = Magazine.new(name: "Marine", category: "Python")
 titan  = Magazine.new(name: "Titan",  category: "Javascript")
@@ -54,7 +56,6 @@ arrays_in_ruby         = Article.new(title: "Arrays in Ruby",         author: bo
 
 
 
-
 #----------------------------------------------Testing the methods for the author class--------------------------------------------
 # NOTE: here I add an article by Levin Ocholla to the Marine magazine making him a contributor to the Marine magazine.
 levin_ocholla.add_article(title: "Lists in Python", magazine: marine) 
@@ -64,6 +65,7 @@ bonface_mabeche.add_article(title: "Arrays in Javascript", magazine: titan)
 jerome_origa.add_article(title: "Sets in Python", magazine: marine)
 
 
+puts #Create a new line before displaying the records
 Author.all.each do |author|
   puts "Name: #{author.name}"
   puts "Articles:   #{author.articles}"

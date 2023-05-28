@@ -14,6 +14,9 @@ class Author
     end
   end
 
+  def self.all
+    @@all
+  end
 
   def articles
     Article.all.filter { |article| article.author == self }
@@ -21,11 +24,7 @@ class Author
 
 
   def magazines
-    #Returns the magazine titles
-    magazines_for_this_author = self.articles.map(&:magazine).uniq # { |article| article.magazine }
-
-    #Returns the magazine instances/objects.
-    Magazine.all.filter { |magazine| magazines_for_this_author.include?(magazine) }
+    magazines_for_this_author = self.articles.map(&:magazine).uniq 
   end
 
 
@@ -36,11 +35,6 @@ class Author
 
   def topic_areas
     self.magazines.map(&:category).uniq
-  end
-
-  
-  def self.all
-    @@all
   end
 
 end
