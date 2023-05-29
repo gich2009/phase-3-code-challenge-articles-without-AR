@@ -30,7 +30,7 @@ require_relative '../config/environment.rb'
 
 
 #Constructing the author table
-error_author_name = Author.new(name: 56)  #To showcase error handling functionality for name
+error_author_name = Author.new(name: 56)  #To showcase error handling functionality for Author name.
 
 levin_ocholla   = Author.new(name: "Levin Ocholla")
 jerome_origa    = Author.new(name: "Jerome Origa")
@@ -38,8 +38,8 @@ bonface_mabeche = Author.new(name: "Bonface Mabeche")
 
 
 #Constructing the magazine table
-error_magazine_name     = Magazine.new(name: 34,      category: "Ruby") #To showcase error handling functionality for name
-error_magazine_category = Magazine.new(name: "Hello", category: 56.5)   #To showcase error handling functionality for category
+error_magazine_name     = Magazine.new(name: 34,      category: "Ruby") #To showcase error handling functionality for Magazine name.
+error_magazine_category = Magazine.new(name: "Hello", category: 56.5)   #To showcase error handling functionality for Magazine category.
 
 enigma = Magazine.new(name: "Enigma", category: "Ruby")
 marine = Magazine.new(name: "Marine", category: "Python")
@@ -47,6 +47,11 @@ titan  = Magazine.new(name: "Titan",  category: "Javascript")
 
 
 #Constructing the article table
+error_aricle_title = Article.new(title: 45, author: levin_ocholla, magazine: enigma) #To showcase error handling functionality for Article title.
+error_article_author = Article.new(title: "Hashes in Ruby", author: "Levin Ocholla", magazine: enigma) #To showcase error handling functionality for Article author.
+error_article_magazine = Article.new(title: "Hashes in Ruby", author: levin_ocholla, magazine: "enigma") #To showcase error handling functionality for Article magazine.
+
+
 hashes_in_ruby         = Article.new(title: "Hashes in Ruby",         author: levin_ocholla,   magazine: enigma)
 dictionaries_in_python = Article.new(title: "Dictionaries in Python", author: jerome_origa,    magazine: marine)
 objects_in_javascript  = Article.new(title: "Objects in Javascript",  author: bonface_mabeche, magazine: titan)
