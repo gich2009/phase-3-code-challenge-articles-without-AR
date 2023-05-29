@@ -16,10 +16,10 @@ class Magazine
   end
 
 
-  #I wrote custom getters instead of using attr_writers to ensure I check that the fields only accept strings.
+  #I wrote custom setters instead of using attr_writers to ensure I check that the fields only accept strings.
   def name=(name)
     begin
-      raise ArgumentError, "Name of #{self.class.name} must be a string" if !name.is_a?(String) 
+      raise ArgumentError, "Name of #{self.class.name} must be a string" unless name.is_a?(String) 
       @name = name
     rescue ArgumentError => e
       puts "Error: #{e.message}"
@@ -29,7 +29,7 @@ class Magazine
 
   def category=(category)
     begin 
-      raise ArgumentError, "Category of #{self.class.name} must be a string" if !category.is_a?(String) 
+      raise ArgumentError, "Category of #{self.class.name} must be a string" unless category.is_a?(String) 
       @category = category
     rescue ArgumentError => e
       puts "Error: #{e.message}"
